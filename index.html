@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+  <html lang="ja">
+  <title>災害カレンダー３６５日</title>
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta property="og:title" content="災害カレンダー３６５日" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://linkevery2s.github.io/bscalendar365/images/ogp.jpg" />
+    <meta property="og:description" content="災害は365日発生する可能性があります。過去に起きた災害事例をカレンダー形式にまとめました。経験した教訓を未来に活かすべく、開発しました。" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="災害カレンダー３６５日" />
+    <meta name="twitter:image" content="https://linkevery2s.github.io/bscalendar365/images/ogp.jpg" />
+    <meta name="twitter:description" content="災害は365日発生する可能性があります。過去に起きた災害事例をカレンダー形式にまとめました。経験した教訓を未来に活かすべく、開発しました。" />
+    <meta name="author" content="仁志">
+    <meta name="keywords" content="災害,防災,カレンダー,災害カレンダー"/>
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="images/apple-touch-icon.png">
+
+    <link href='fullcalendar/main.css' rel='stylesheet' />
+    <script src='fullcalendar/main.js'></script>
+    <script src="locale/ja.js"></script>
+    <script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth'
+        });
+        calendar.render();
+      });
+
+    </script>
+  </head>
+  <body>
+    <div id='calendar'></div>
+  </body>
+</html>
