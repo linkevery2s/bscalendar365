@@ -119,7 +119,7 @@
     let i_bunkatu = 100;// 何行にするか
 
     let data;
-
+    let max;
 
     /* 最初のロード時 */
     onload = async () => {
@@ -128,11 +128,11 @@
       let kensaku = text.value;
 
       const res = await fetch("https://script.google.com/macros/s/AKfycbwEuMQkaT-zVikKvjtpZY0mo09YosneurEfAdl_qHXIzKTypi9-adQR50t_YA0IOfotiQ/exec");
-      const data = await res.json();
+      data = await res.json();
 
       console.log(data);
 
-      const max = data.length;
+      max = data.length;
       console.log(max);
       let count = 0;
 
@@ -153,8 +153,12 @@
 
           if (i * i_bunkatu + mm < max) {
 
+            let dd = new Date(data[i * i_bunkatu + mm].occurred_date);
+            let day = dd.toLocaleDateString();
+
             bunkatu[i] += '<div class="item">' +
               '<span class="item_title text-2xl">' + data[i * i_bunkatu + mm].name + '</span>' +
+              day + 
               '<img src="' + data[i * i_bunkatu + mm].wikipedia_image_url + '" width="100%">' +
               '<div class="item_ex text-lg">' + data[i * i_bunkatu + mm].overview + '</div>'
               '</div>';
@@ -224,14 +228,21 @@
 
           console.log(kensaku_b);*/
 
-          const max = data.length;
+          console.log(data);
+
+          max = data.length;
           let count = 0;
 
           for (let j = 0; j < max; j++) {
             if (data[j].name.indexOf(kensaku) != -1 || data[j].overview.indexOf(kensaku) != -1) {
+
+              let dd = new Date(data[j].occurred_date);
+              let day = dd.toLocaleDateString();
+
               kensaku_arr[j] = '<div class="item">' +
                 '<span class="item_title text-2xl">' + data[j].name.replaceAll(kensaku, "<b>" + kensaku + "</b>") + '</span>' +
-                '<img src="' + data[i * i_bunkatu + mm].wikipedia_image_url + '<" width="100%">' +
+                day + 
+                '<img src="' + data[j].wikipedia_image_url + '" width="100%">' +
                 '<div class="item_ex text-lg">' + data[j].overview.replaceAll(kensaku, "<b>" + kensaku + "</b>") + '</div>' +
                 '</div>';
             } else {
