@@ -153,12 +153,9 @@
 
           if (i * i_bunkatu + mm < max) {
 
-            let dd = new Date(data[i * i_bunkatu + mm].occurred_date);
-            let day = dd.toLocaleDateString();
-
             bunkatu[i] += '<div class="item">' +
               '<span class="item_title text-2xl">' + data[i * i_bunkatu + mm].name + '</span>' +
-              day + 
+              data[i * i_bunkatu + mm].occurred_date + 
               '<img src="' + data[i * i_bunkatu + mm].wikipedia_image_url + '" width="100%">' +
               '<div class="item_ex text-lg">' + data[i * i_bunkatu + mm].overview + '</div>'
               '</div>';
@@ -236,12 +233,9 @@
           for (let j = 0; j < max; j++) {
             if (data[j].name.indexOf(kensaku) != -1 || data[j].overview.indexOf(kensaku) != -1) {
 
-              let dd = new Date(data[j].occurred_date);
-              let day = dd.toLocaleDateString();
-
               kensaku_arr[j] = '<div class="item">' +
                 '<span class="item_title text-2xl">' + data[j].name.replaceAll(kensaku, "<b>" + kensaku + "</b>") + '</span>' +
-                day + 
+                data[j].occurred_date + 
                 '<img src="' + data[j].wikipedia_image_url + '" width="100%">' +
                 '<div class="item_ex text-lg">' + data[j].overview.replaceAll(kensaku, "<b>" + kensaku + "</b>") + '</div>' +
                 '</div>';
