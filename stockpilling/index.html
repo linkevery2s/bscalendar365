@@ -92,7 +92,7 @@
 
 <body>
   <center>
-    <h1 class="post_title">キーワード検索</h1>
+    <h1 class="post_title">備蓄品リスト</h1>
 
     <p>キーワードを入力すると絞り込んで検索することができます。</p>
 
@@ -110,7 +110,7 @@
 
   <script type="module">
 
-      let i_bunkatu = 10;// 何行にするか
+      let i_bunkatu = 20;// 何行にするか
 
     /* 最初のロード時 */
       onload = async () => {
@@ -141,8 +141,9 @@
             if (i * i_bunkatu + mm < max){
 
               bunkatu[i] += '<div class="item">' +
-              '<span class="item_title">' + data[i * i_bunkatu + mm].title + '</span>' +
-              '<div class="item_ex">' + data[i * i_bunkatu + mm].body + '</div>' +
+              '<span class="item_title">' + data[i * i_bunkatu + mm].item_ja + '</span>' +
+              '<img src="' + data[i * i_bunkatu + mm].image + '" width="100%">' +
+              '<div class="item_ex">' + data[i * i_bunkatu + mm].description_ja + '</div>' +
               '</div>';
 
               count = count + 1;
@@ -214,10 +215,11 @@
             let count = 0;
 
             for (let j = 0; j < max; j++) {
-              if (data[j].title.indexOf(kensaku) != -1 || data[j].body.indexOf(kensaku) != -1) {
+              if (data[j].item_ja.indexOf(kensaku) != -1 || data[j].description_ja.indexOf(kensaku) != -1) {
                 kensaku_arr[j] = '<div class="item">' +
-                '<span class="item_title">' + data[j].title.replaceAll(kensaku, "<b>" + kensaku + "</b>") + '</span>' +
-                '<div class="item_ex">' + data[j].body.replaceAll(kensaku, "<b>" + kensaku + "</b>") + '</div>' +
+                '<span class="item_title">' + data[j].item_ja.replaceAll(kensaku, "<b>" + kensaku + "</b>") + '</span>' +
+                '<img src="' + data[j].image + '" width="100%">' +
+                '<div class="item_ex">' + data[j].description_ja.replaceAll(kensaku, "<b>" + kensaku + "</b>") + '</div>' +
                 '</div>';
               }else{
                 kensaku_arr[j] = "";
