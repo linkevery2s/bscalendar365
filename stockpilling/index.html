@@ -6,8 +6,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+  <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
+
+    html{
+      font-family: "Meiryo", "Hiragino Maru Gothic Pro", sans-serif;
+    }
+
+    html,body{
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
     input {
+      border: 1px solid #000000;
+      border-radius: .3em;
       color: rgba(0, 119, 184, 0.5);
       font-size: 1.2em;
       font-weight: bolder;
@@ -35,6 +50,7 @@
 
     .item_title {
       text-decoration: none;
+      margin-left: .8em;
       color: rgba(0, 119, 184, 1);
       font-weight: bolder;
     }
@@ -92,19 +108,19 @@
 
 <body>
   <center>
-    <h1 class="post_title">備蓄品リスト</h1>
 
-    <p>キーワードを入力すると絞り込んで検索することができます。</p>
+    <h1 class="text-3xl my-5">備蓄品リスト</h1>
 
-    <input type="text" name="text1" id="text" size="15" autocomplete="off" autofocus placeholder="キーワード検索" />  <span id="exp">リセット</span><br><br>
+    <input class = "pl-3" type="text" name="text1" id="text" size="15" autocomplete="off" autofocus placeholder="キーワード検索" />  <span id="exp">リセット</span><br><br>
 
-    <ul id="page_list"><div id="koumoku"></div></ul>
+    <ul id="page_list" class="mb-3"><div id="koumoku"></div></ul>
 
     <p><span id="resultCount"></span></p>
 
   </center>
 
   <div id="result"></div>
+
 
   <script src="data.json"></script>
 
@@ -124,7 +140,7 @@
 
 
         let b = Math.ceil( max / i_bunkatu ) ;
-        console.log(b);
+        //console.log(b);
 
         koumoku.innerHTML = "";
 
@@ -141,9 +157,9 @@
             if (i * i_bunkatu + mm < max){
 
               bunkatu[i] += '<div class="item">' +
-              '<span class="item_title">' + data[i * i_bunkatu + mm].item_ja + '</span>' +
+              '<span class="item_title text-2xl">' + data[i * i_bunkatu + mm].item_ja + '</span>' +
+              '<div class="item_ex text-lg">' + data[i * i_bunkatu + mm].description_ja + '</div>' +
               '<img src="' + data[i * i_bunkatu + mm].image + '" width="100%">' +
-              '<div class="item_ex">' + data[i * i_bunkatu + mm].description_ja + '</div>' +
               '</div>';
 
               count = count + 1;
@@ -217,9 +233,9 @@
             for (let j = 0; j < max; j++) {
               if (data[j].item_ja.indexOf(kensaku) != -1 || data[j].description_ja.indexOf(kensaku) != -1) {
                 kensaku_arr[j] = '<div class="item">' +
-                '<span class="item_title">' + data[j].item_ja.replaceAll(kensaku, "<b>" + kensaku + "</b>") + '</span>' +
+                '<span class="item_title text-2xl">' + data[j].item_ja.replaceAll(kensaku, "<b>" + kensaku + "</b>") + '</span>' +
+                '<div class="item_ex text-lg">' + data[j].description_ja.replaceAll(kensaku, "<b>" + kensaku + "</b>") + '</div>' +
                 '<img src="' + data[j].image + '" width="100%">' +
-                '<div class="item_ex">' + data[j].description_ja.replaceAll(kensaku, "<b>" + kensaku + "</b>") + '</div>' +
                 '</div>';
               }else{
                 kensaku_arr[j] = "";
@@ -229,12 +245,13 @@
             let new_arr = kensaku_arr.filter(function(x){
               return !(x == ""); 
             })
-            console.log(new_arr);
+
+            //console.log(new_arr);
 
             count = new_arr.length;
 
             let b = Math.ceil( count / i_bunkatu ) ;
-            console.log(b);
+            //console.log(b);
 
           /* 検索結果が0の場合 */
             if(b == 0){
