@@ -40,7 +40,7 @@
 
 			time_stamp.innerHTML = year + "年" + month + "月" + day + "日" + jikoku_h + "時" + jikoku_m + "分";
 
-			let tiri = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png', {
+			let basemap = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png', {
 				attribution: "&copy; <a href=\"https://carto.com/about-carto/\" target=\"_blank\" rel=\"noopener\">CARTO</a>, &copy; <a href=\"http://www.openstreetmap.org/about/\" target=\"_blank\">OpenStreetMap</a> contributors"
 			});
 
@@ -55,7 +55,8 @@
 				minZoom: 6,
 				zoomControl: false,
 				zoom: 6,
-				layers: [tiri, ame_layer]
+				zoomDelta: 2,
+				layers: [basemap, ame_layer]
 			});
 
 			L.control.zoom({
